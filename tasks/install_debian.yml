@@ -1,0 +1,29 @@
+---
+# tasks file for speedtest - Debian/Ubuntu Family
+
+- name: Debian/Ubuntu Family | Installing {{ speedtest_debian_pre_reqs }}
+  apt:
+    name: "{{ speedtest_debian_pre_reqs }}"
+    state: "{{ speedtest_debian_pre_reqs_desired_state }}"
+    force_apt_get: yes
+    update_cache: yes
+
+- name: Debian/Ubuntu Family | Add gpg signing key for {{ speedtest_app }}
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "{{ speedtest_repo_debian_gpg_key }}"
+    state: present
+
+- name: Debian/Ubuntu Family | Adding repository {{ speedtest_repo_debian }}
+  apt_repository:
+    repo: "{{ speedtest_repo_debian }}"
+    state: "{{ speedtest_repo_debian_desired_state }}"
+    filename: "{{ speedtest_repo_debian_filename }}"
+    update_cache: yes
+
+- name: Debian/Ubuntu Family | Installing {{ speedtest_app }}
+  apt:
+    name: "{{ speedtest_app }}"
+    state: "{{ speedtest_app_desired_state }}"
+    force_apt_get: yes
+    update_cache: yes
