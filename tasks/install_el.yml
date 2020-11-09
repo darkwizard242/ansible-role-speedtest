@@ -1,0 +1,17 @@
+---
+# tasks file for speedtest - EL Family
+
+
+- name: EL Family | Downloading official repository file from {{ speedtest_repo_el_url }}
+  get_url:
+    url: "{{ speedtest_repo_el_url }}"
+    dest: "{{ speedtest_repo_el_filename }}"
+    owner: "{{ speedtest_repo_el_filename_owner }}"
+    group: "{{ speedtest_repo_el_filename_group }}"
+    mode: "{{ speedtest_repo_el_filename_mode }}"
+
+- name: EL Family | Installing {{ speedtest_app }}
+  yum:
+    name: "{{ speedtest_app }}"
+    state: "{{ speedtest_app_desired_state }}"
+    update_cache: yes
