@@ -8,7 +8,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 PACKAGE = "speedtest"
 PACKAGE_BINARY = "/usr/bin/speedtest"
-REPO_DEBIAN_FILE = "/etc/apt/sources.list.d/speedtest"
+REPO_DEBIAN_FILE = "/etc/apt/sources.list.d/speedtest.list"
 REPO_EL_FILE = "/etc/yum.repos.d/speedtest.repo"
 
 
