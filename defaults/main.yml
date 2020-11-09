@@ -1,0 +1,23 @@
+---
+# defaults file for speedtest
+
+speedtest_app: speedtest
+speedtest_app_desired_state: present
+
+# Debian family based
+speedtest_debian_pre_reqs:
+  - apt-transport-https
+  - dirmngr
+  - gnupg1
+speedtest_debian_pre_reqs_desired_state: present
+speedtest_repo_debian_gpg_key: 379CE192D401AB61
+speedtest_repo_debian: "deb https://ookla.bintray.com/debian generic main"
+speedtest_repo_debian_filename: "{{ speedtest_app }}"
+speedtest_repo_debian_desired_state: present
+
+# EL family based
+speedtest_repo_el_url: https://bintray.com/ookla/rhel/rpm
+speedtest_repo_el_filename: /etc/yum.repos.d/speedtest.repo
+speedtest_repo_el_filename_owner: root
+speedtest_repo_el_filename_group: root
+speedtest_repo_el_filename_mode: '0644'

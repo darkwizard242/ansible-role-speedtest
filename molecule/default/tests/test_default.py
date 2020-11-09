@@ -1,0 +1,38 @@
+import os
+
+import testinfra.utils.ansible_runner
+
+testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
+    os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
+
+
+PACKAGE = "speedtest"
+PACKAGE_BINARY = "/usr/bin/speedtest"
+REPO_DEBIAN_FILE = "/etc/apt/sources.list.d/speedtest.list"
+REPO_EL_FILE = "/etc/yum.repos.d/speedtest.repo"
+
+
+def test_speedtest_package_installed(host):
+    assert host.package(PACKAGE).is_installed
+
+
+def test_speedtest_binary_exists(host):
+    assert host.file(PACKAGE_BINARY).exists
+
+
+def test_speedtest_binary_file(host):
+    assert host.file(PACKAGE_BINARY).is_file
+
+
+def test_speedtest_binary_which(host):
+    assert host.check_output('which speedtest') == PACKAGE_BINARY
+
+
+def test_trivy_repo_exists(host):
+    assert host.file(REPO_DEBIAN_FILE).exists or \
+      host.file(REPO_EL_FILE).exists
+
+
+def test_trivy_repo_file(host):
+    assert host.file(REPO_DEBIAN_FILE).is_file or \
+      host.file(REPO_EL_FILE).is_file
