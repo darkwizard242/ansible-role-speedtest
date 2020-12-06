@@ -21,21 +21,21 @@ def test_speedtest_package_installed(host):
 
 def test_speedtest_binary_exists(host):
     """
-    Tests if simplescreenrecorder binary exists.
+    Tests if speedtest binary exists.
     """
     assert host.file(PACKAGE_BINARY).exists
 
 
 def test_speedtest_binary_file(host):
     """
-    Tests if simplescreenrecorder binary is file type.
+    Tests if speedtest binary is file type.
     """
     assert host.file(PACKAGE_BINARY).is_file
 
 
 def test_speedtest_binary_which(host):
     """
-    Tests the output to confirm simplescreenrecorder's binary location.
+    Tests the output to confirm speedtest's binary location.
     """
     assert host.check_output('which speedtest') == PACKAGE_BINARY
 
