@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: speedtest
-  author: Ali Muhammad
+  author: darkwizard242
   description: Installs/Uninstalls Ookla Speetest app for internet connection measurement purposes.
   company: none
   license: MIT
