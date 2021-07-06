@@ -10,8 +10,8 @@ speedtest_debian_pre_reqs:
   - dirmngr
   - gnupg1
 speedtest_debian_pre_reqs_desired_state: present
-speedtest_repo_debian_gpg_key: 379CE192D401AB61
-speedtest_repo_debian: "deb https://ookla.bintray.com/debian generic main"
+speedtest_repo_debian_gpg_key: https://packagecloud.io/ookla/speedtest-cli/gpgkey
+speedtest_repo_debian: "deb https://packagecloud.io/ookla/speedtest-cli/{{ ansible_distribution | lower }}/ {{ ansible_lsb['codename'] }} main"
 speedtest_repo_debian_filename: "{{ speedtest_app }}"
 speedtest_repo_debian_desired_state: present
 
@@ -21,3 +21,5 @@ speedtest_repo_el_filename: /etc/yum.repos.d/speedtest.repo
 speedtest_repo_el_filename_owner: root
 speedtest_repo_el_filename_group: root
 speedtest_repo_el_filename_mode: '0644'
+# - darkwizard242.speedtest NEED TO FIX APT LINK deb https://packagecloud.io/ookla/speedtest-cli/ubuntu/ focal main
+# curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
