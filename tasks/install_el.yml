@@ -1,8 +1,7 @@
 ---
 # tasks file for speedtest - EL Family
 
-
-- name: EL Family | Adding repository {{ speedtest_repo_el_url }}
+- name: EL Family | Adding repository {{ speedtest_repo_el_baseurl }}
   yum_repository:
     name: "{{ speedtest_repo_el_name }}"
     description: "{{ speedtest_repo_el_description }}"
