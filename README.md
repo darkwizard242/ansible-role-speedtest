@@ -24,14 +24,20 @@ speedtest_debian_pre_reqs:
   - dirmngr
   - gnupg1
 speedtest_debian_pre_reqs_desired_state: present
-speedtest_repo_debian_gpg_key: 379CE192D401AB61
-speedtest_repo_debian: "deb https://ookla.bintray.com/debian generic main"
+speedtest_repo_debian_gpg_key: https://packagecloud.io/ookla/speedtest-cli/gpgkey
+speedtest_repo_debian: "deb https://packagecloud.io/ookla/speedtest-cli/{{ ansible_distribution | lower }}/ {{ ansible_lsb['codename'] }} main"
 speedtest_repo_debian_filename: "{{ speedtest_app }}"
 speedtest_repo_debian_desired_state: present
 
 # EL family based
-speedtest_repo_el_url: https://bintray.com/ookla/rhel/rpm
-speedtest_repo_el_filename: /etc/yum.repos.d/speedtest.repo
+speedtest_repo_el_name: ookla_speedtest-cli
+speedtest_repo_el_description: ookla_speedtest-cli
+speedtest_repo_el_baseurl: "https://packagecloud.io/ookla/speedtest-cli/el/{{ ansible_distribution_major_version }}/$basearch"
+speedtest_repo_el_gpgcheck: no
+speedtest_repo_el_gpgkey: https://packagecloud.io/ookla/speedtest-cli/gpgkey
+speedtest_repo_el_filename: "{{ speedtest_app }}"
+speedtest_repo_el_state: present
+speedtest_repo_el_enabled: yes
 speedtest_repo_el_filename_owner: root
 speedtest_repo_el_filename_group: root
 speedtest_repo_el_filename_mode: '0644'
@@ -39,21 +45,27 @@ speedtest_repo_el_filename_mode: '0644'
 
 ### Variables table:
 
-Variable                                | Value (default)                                       | Description
---------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-speedtest_app                           | speedtest                                             | Name of speedtest application package require to be installed i.e. `speedtest`
-speedtest_app_desired_state             | present                                               | State of the speedtest_app package. Whether to install, verify if available or to uninstall (i.e. ansible apt module values: `present`, `latest`, or `absent`)
-speedtest_debian_pre_reqs               | apt-transport-https, dirmgr, gnupg1                   | Speedtest recommends the installation of both these packages on Debian family systems and as such, they are considered pre-requisites.
-speedtest_debian_pre_reqs_desired_state | present                                               | Desired state for Speedtest pre-requisite apps on Debian family systems.
-speedtest_repo_debian_gpg_key           | 379CE192D401AB61                                      | Speedtest GPG key required on Debian family systems
-speedtest_repo_debian                   | "deb <https://ookla.bintray.com/debian> generic main" | Speedtest repo URL for Debain family systems.
-speedtest_repo_debain_filename          | speedtest                                             | Name of the repository file that will be stored at `/etc/apt/sources.list.d/` on Debian based systems.
-speedtest_repo_debian_desired_state     | present                                               | `present` indicates creating the repository file if it doesn't exist on Debian based systems. Alternative is `absent` (not recommended as it will prevent from installation of **speedtest** package).
-speedtest_repo_el_url                   | <https://bintray.com/ookla/rhel/rpm>                  | URL to download the repo file for EL based systems.
-speedtest_repo_el_filename              | /etc/yum.repos.d/speedtest.repo                       | File path for the speedtest repository to be saved as on EL based systems.
-speedtest_repo_el_filename_owner        | root                                                  | Owner of /etc/yum.repos.d/speedtest.repo on EL based systems.
-speedtest_repo_el_filename_group        | root                                                  | Group of /etc/yum.repos.d/speedtest.repo on EL based systems.
-speedtest_repo_el_filename_mode         | '0644'                                                | Mode of /etc/yum.repos.d/speedtest.repo on EL based systems.
+Variable                                | Description
+--------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+speedtest_app                           | Name of speedtest application package require to be installed i.e. `speedtest`
+speedtest_app_desired_state             | State of the speedtest_app package. Whether to install, verify if available or to uninstall (i.e. ansible apt module values: `present`, `latest`, or `absent`)
+speedtest_debian_pre_reqs               | Speedtest recommends the installation of both these packages on Debian family systems and as such, they are considered pre-requisites.
+speedtest_debian_pre_reqs_desired_state | Desired state for Speedtest pre-requisite apps on Debian family systems.
+speedtest_repo_debian_gpg_key           | Speedtest GPG key url required on Debian family systems
+speedtest_repo_debian                   | Speedtest repo URL for Debain family systems.
+speedtest_repo_debain_filename          | Name of the repository file that will be stored at `/etc/apt/sources.list.d/` on Debian based systems.
+speedtest_repo_debian_desired_state     | `present` indicates creating the repository file if it doesn't exist on Debian based systems. Alternative is `absent` (not recommended as it will prevent from installation of **speedtest** package).
+speedtest_repo_el_name                  | Repository name for Speedtest on EL based systems.
+speedtest_repo_el_description           | Description to be added in EL based repository file for Speedtest.
+speedtest_repo_el_baseurl               | Repository baseurl for Speedtest on EL based systems.
+speedtest_repo_el_gpgcheck              | Boolean for whether to perform gpg check against Speedtest repository on EL based systems.
+speedtest_repo_el_gpgkey                | GPG key for Speedtest repository.
+speedtest_repo_el_state                 | `present` indicates creating the repository file if it doesn't exist on EL based systems. Alternative is absent (not recommended as it will prevent from installation of speedtest packages).
+speedtest_repo_el_enabled               | Boolean to set so that Speedtest repository is enabled on EL based systems.
+speedtest_repo_el_filename              | File path for the speedtest repository to be saved as on EL based systems.
+speedtest_repo_el_filename_owner        | Owner of /etc/yum.repos.d/speedtest.repo on EL based systems.
+speedtest_repo_el_filename_group        | Group of /etc/yum.repos.d/speedtest.repo on EL based systems.
+speedtest_repo_el_filename_mode         | Mode of /etc/yum.repos.d/speedtest.repo on EL based systems.
 
 ## Dependencies
 
