@@ -10,8 +10,7 @@
 
 - name: Debian/Ubuntu Family | Add gpg signing key for {{ speedtest_app }}
   apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: "{{ speedtest_repo_debian_gpg_key }}"
+    url: "{{ speedtest_repo_debian_gpg_key }}"
     state: present
 
 - name: Debian/Ubuntu Family | Adding repository {{ speedtest_repo_debian }}

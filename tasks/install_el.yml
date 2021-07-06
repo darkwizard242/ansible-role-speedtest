@@ -1,11 +1,16 @@
 ---
 # tasks file for speedtest - EL Family
 
-
-- name: EL Family | Downloading official repository file from {{ speedtest_repo_el_url }}
-  get_url:
-    url: "{{ speedtest_repo_el_url }}"
-    dest: "{{ speedtest_repo_el_filename }}"
+- name: EL Family | Adding repository {{ speedtest_repo_el_baseurl }}
+  yum_repository:
+    name: "{{ speedtest_repo_el_name }}"
+    description: "{{ speedtest_repo_el_description }}"
+    baseurl: "{{ speedtest_repo_el_baseurl }}"
+    gpgcheck: "{{ speedtest_repo_el_gpgcheck }}"
+    gpgkey: "{{ speedtest_repo_el_gpgkey }}"
+    file: "{{ speedtest_repo_el_filename }}"
+    state: "{{ speedtest_repo_el_state }}"
+    enabled: "{{ speedtest_repo_el_enabled }}"
     owner: "{{ speedtest_repo_el_filename_owner }}"
     group: "{{ speedtest_repo_el_filename_group }}"
     mode: "{{ speedtest_repo_el_filename_mode }}"

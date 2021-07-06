@@ -10,14 +10,20 @@ speedtest_debian_pre_reqs:
   - dirmngr
   - gnupg1
 speedtest_debian_pre_reqs_desired_state: present
-speedtest_repo_debian_gpg_key: 379CE192D401AB61
-speedtest_repo_debian: "deb https://ookla.bintray.com/debian generic main"
+speedtest_repo_debian_gpg_key: https://packagecloud.io/ookla/speedtest-cli/gpgkey
+speedtest_repo_debian: "deb https://packagecloud.io/ookla/speedtest-cli/{{ ansible_distribution | lower }}/ {{ ansible_lsb['codename'] }} main"
 speedtest_repo_debian_filename: "{{ speedtest_app }}"
 speedtest_repo_debian_desired_state: present
 
 # EL family based
-speedtest_repo_el_url: https://bintray.com/ookla/rhel/rpm
-speedtest_repo_el_filename: /etc/yum.repos.d/speedtest.repo
+speedtest_repo_el_name: ookla_speedtest-cli
+speedtest_repo_el_description: ookla_speedtest-cli
+speedtest_repo_el_baseurl: "https://packagecloud.io/ookla/speedtest-cli/el/{{ ansible_distribution_major_version }}/$basearch"
+speedtest_repo_el_gpgcheck: no
+speedtest_repo_el_gpgkey: https://packagecloud.io/ookla/speedtest-cli/gpgkey
+speedtest_repo_el_filename: "{{ speedtest_app }}"
+speedtest_repo_el_state: present
+speedtest_repo_el_enabled: yes
 speedtest_repo_el_filename_owner: root
 speedtest_repo_el_filename_group: root
 speedtest_repo_el_filename_mode: '0644'
