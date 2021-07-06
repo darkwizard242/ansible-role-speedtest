@@ -16,7 +16,7 @@ speedtest_repo_debian_filename: "{{ speedtest_app }}"
 speedtest_repo_debian_desired_state: present
 
 # EL family based
-speedtest_repo_el_url: https://bintray.com/ookla/rhel/rpm
+speedtest_repo_el_url: "https://packagecloud.io/ookla/speedtest-cli/{{ ansible_distribution | lower }}/{{ ansible_lsb['ansible_distribution_major_version'] }}/$basearch" ##https://bintray.com/ookla/rhel/rpm 
 speedtest_repo_el_filename: /etc/yum.repos.d/speedtest.repo
 speedtest_repo_el_filename_owner: root
 speedtest_repo_el_filename_group: root
