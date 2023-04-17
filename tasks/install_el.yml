@@ -2,7 +2,7 @@
 # tasks file for speedtest - EL Family
 
 - name: EL Family | Adding repository {{ speedtest_repo_el_baseurl }}
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: "{{ speedtest_repo_el_name }}"
     description: "{{ speedtest_repo_el_description }}"
     baseurl: "{{ speedtest_repo_el_baseurl }}"
@@ -16,7 +16,7 @@
     mode: "{{ speedtest_repo_el_filename_mode }}"
 
 - name: EL Family | Installing {{ speedtest_app }}
-  yum:
+  ansible.builtin.yum:
     name: "{{ speedtest_app }}"
     state: "{{ speedtest_app_desired_state }}"
     update_cache: yes
