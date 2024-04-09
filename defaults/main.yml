@@ -13,6 +13,7 @@ speedtest_debian_pre_reqs_desired_state: present
 speedtest_repo_debian_gpg_key: https://packagecloud.io/ookla/speedtest-cli/gpgkey
 speedtest_repo_debian: "deb https://packagecloud.io/ookla/speedtest-cli/{{ ansible_distribution | lower }}/ {{ ansible_lsb['codename'] }} main"
 speedtest_repo_debian_filename: "{{ speedtest_app }}"
+speedtest_repo_debian_keyring_filename: "{{ speedtest_app }}"
 speedtest_repo_debian_desired_state: present
 
 # EL family based
