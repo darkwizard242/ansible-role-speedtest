@@ -27,7 +27,7 @@ speedtest_debian_pre_reqs_desired_state: present
 speedtest_repo_debian_gpg_key: https://packagecloud.io/ookla/speedtest-cli/gpgkey
 speedtest_repo_debian: "deb https://packagecloud.io/ookla/speedtest-cli/{{ ansible_distribution | lower }}/ {{ ansible_lsb['codename'] }} main"
 speedtest_repo_debian_filename: "{{ speedtest_app }}"
-speedtest_repo_debian_keyring_filename: "{{ speedtest_app }}"
+speedtest_repo_debian_keyring_filename: "{{ speedtest_app }}.gpg"
 speedtest_repo_debian_desired_state: present
 
 # EL family based
@@ -36,7 +36,7 @@ speedtest_repo_el_description: ookla_speedtest-cli
 speedtest_repo_el_baseurl: "https://packagecloud.io/ookla/speedtest-cli/el/{{ ansible_distribution_major_version }}/$basearch"
 speedtest_repo_el_gpgcheck: no
 speedtest_repo_el_gpgkey: https://packagecloud.io/ookla/speedtest-cli/gpgkey
-speedtest_repo_el_filename: "{{ speedtest_app }}.gpg"
+speedtest_repo_el_filename: "{{ speedtest_app }}"
 speedtest_repo_el_state: present
 speedtest_repo_el_enabled: yes
 speedtest_repo_el_filename_owner: root
@@ -55,7 +55,7 @@ speedtest_debian_pre_reqs_desired_state | Desired state for Speedtest pre-requis
 speedtest_repo_debian_gpg_key           | Speedtest GPG key url required on Debian family systems
 speedtest_repo_debian                   | Speedtest repo URL for Debain family systems.
 speedtest_repo_debain_filename          | Name of the repository file that will be stored at `/etc/apt/sources.list.d/` on Debian based systems.
-speedtest_repo_debian_keyring_filename  | Name of the gpg file that will be stored at `/etc/apt/trusted.gpg.d/' on Debian based systems.
+speedtest_repo_debian_keyring_filename  | Name of the gpg file that will be stored at `/etc/apt/trusted.gpg.d/' on Debian based systems. Should end in `.gpg`
 speedtest_repo_debian_desired_state     | `present` indicates creating the repository file if it doesn't exist on Debian based systems. Alternative is `absent` (not recommended as it will prevent from installation of **speedtest** package).
 speedtest_repo_el_name                  | Repository name for Speedtest on EL based systems.
 speedtest_repo_el_description           | Description to be added in EL based repository file for Speedtest.
