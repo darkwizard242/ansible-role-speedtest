@@ -28,6 +28,7 @@ speedtest_repo_debian_gpg_key: https://packagecloud.io/ookla/speedtest-cli/gpgke
 speedtest_repo_debian: "deb https://packagecloud.io/ookla/speedtest-cli/{{ ansible_distribution | lower }}/ {{ ansible_lsb['codename'] }} main"
 speedtest_repo_debian_filename: "{{ speedtest_app }}"
 speedtest_repo_debian_keyring_filename: "{{ speedtest_app }}.gpg"
+speedtest_repo_debian_keyid: C525F88FCF3A7E56CE2CF59131EB3981E723ACAA
 speedtest_repo_debian_desired_state: present
 
 # EL family based
@@ -56,6 +57,7 @@ speedtest_repo_debian_gpg_key           | Speedtest GPG key url required on Debi
 speedtest_repo_debian                   | Speedtest repo URL for Debain family systems.
 speedtest_repo_debain_filename          | Name of the repository file that will be stored at `/etc/apt/sources.list.d/` on Debian based systems.
 speedtest_repo_debian_keyring_filename  | Name of the gpg file that will be stored at `/etc/apt/trusted.gpg.d/' on Debian based systems. Should end in `.gpg`
+speedtest_repo_debian_keyid             | Key ID to import to ensure it hasn't changed. Download the key and use `gpg --show-keys <keyfile>` to determine the ID.
 speedtest_repo_debian_desired_state     | `present` indicates creating the repository file if it doesn't exist on Debian based systems. Alternative is `absent` (not recommended as it will prevent from installation of **speedtest** package).
 speedtest_repo_el_name                  | Repository name for Speedtest on EL based systems.
 speedtest_repo_el_description           | Description to be added in EL based repository file for Speedtest.
