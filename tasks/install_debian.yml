@@ -12,6 +12,7 @@
   ansible.builtin.apt_key:
     url: "{{ speedtest_repo_debian_gpg_key }}"
     keyring: "{{ speedtest_repo_debian_keyring_filename }}"
+    id: "{{ speedtest_repo_debian_keyid }}"
     state: present
 
 - name: Debian/Ubuntu Family | Adding repository {{ speedtest_repo_debian }}
