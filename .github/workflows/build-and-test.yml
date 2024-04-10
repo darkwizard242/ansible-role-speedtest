@@ -75,7 +75,9 @@ jobs:
 
     - name: Execute Molecule test of role for ${{ matrix.IMAGE }}
       working-directory: '${{ env.CUSTOM_DIR }}'
-      run: DISTRO=${{ matrix.IMAGE }} molecule test
+      run: |
+        . venv/bin/activate
+        DISTRO=${{ matrix.IMAGE }} molecule test
       env:
         PY_COLORS: '1'
         ANSIBLE_FORCE_COLOR: '1'
